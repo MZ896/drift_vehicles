@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import './style.css';
 
 const game = document.querySelector('#game');
 const menu = document.querySelector('#menu');
