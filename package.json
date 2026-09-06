@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build && node scripts/embed-worker.mjs",
+    "build:pages": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
