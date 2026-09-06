@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090d16" />
+    <meta name="description" content="Hit the streets in Grand Theft Vehicles, a lightweight 3D city driving game built for the browser." />
+    <meta property="og:title" content="Grand Theft Vehicles" />
+    <meta property="og:description" content="A lightweight 3D city. One car. Endless streets." />
+    <meta property="og:image" content="/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Grand Theft Vehicles" />
+    <meta name="twitter:description" content="A lightweight 3D city. One car. Endless streets." />
+    <meta name="twitter:image" content="/og.png" />
+    <title>Grand Theft Vehicles</title>
+  </head>
+  <body>
+    <div id="game" aria-label="3D city driving game"></div>
+
+    <main id="menu" class="menu">
+      <div class="eyebrow"><span></span> OPEN CITY / BROWSER EDITION</div>
+      <h1>GRAND THEFT<br /><em>VEHICLES</em></h1>
+      <p class="tagline">A lightweight city. One car. No limits.</p>
+      <button id="startButton" class="start-button" type="button">
+        <span>START ENGINE</span><b>→</b>
+      </button>
+      <div class="controls-preview" aria-label="Game controls">
+        <div><kbd>WASD</kbd><span>DRIVE</span></div>
+        <div><kbd>SHIFT</kbd><span>BRAKE</span></div>
+        <div><kbd>Q</kbd><kbd>E</kbd><span>CAMERA</span></div>
+      </div>
+      <p class="tip">TIP: CLICK AND DRAG TO LOOK AROUND</p>
+    </main>
+
+    <section id="hud" class="hud" aria-hidden="true">
+      <div class="district">
+        <span class="district-dot"></span>
+        <div><small>CURRENT DISTRICT</small><strong id="districtName">DOWNTOWN</strong></div>
+      </div>
+      <div class="speedometer">
+        <div><span id="speed">00</span><small>KM/H</small></div>
+        <div class="speed-bar"><i id="speedBar"></i></div>
+      </div>
+      <div class="hud-help"><b>WASD</b> DRIVE <b>SHIFT</b> BRAKE <b>Q / E</b> CAMERA</div>
+    </section>
+
+    <section id="customizer" class="customizer" aria-hidden="true" aria-label="Sunset Customs vehicle editor">
+      <div class="customizer-head">
+        <div><small>DRIVE-IN AUTO SHOP</small><h2>SUNSET <em>CUSTOMS</em></h2></div>
+        <button id="closeCustomizer" type="button" aria-label="Close customization">×</button>
+      </div>
+      <p>Build your ride. Changes apply instantly and save on this device.</p>
+      <div class="custom-grid">
+        <label>CAR TYPE<select id="carType"><option value="sport">Street Sport</option><option value="muscle">Heavy Muscle</option><option value="compact">City Compact</option><option value="rally">Rally Runner</option></select></label>
+        <label>BODY SHAPE<select id="bodyShape"><option value="standard">Standard</option><option value="wide">Widebody</option><option value="low">Low Profile</option><option value="tall">Touring</option></select></label>
+        <label>PAINT COLOR<span class="color-row"><input id="paintColor" type="color" value="#e1ad20" /><b id="paintValue">#E1AD20</b></span></label>
+        <label>ACCENT COLOR<span class="color-row"><input id="accentColor" type="color" value="#f1c233" /><b id="accentValue">#F1C233</b></span></label>
+        <label>PAINT FINISH<select id="paintFinish"><option value="gloss">Gloss</option><option value="metallic">Metallic</option><option value="matte">Matte</option><option value="chrome">Chrome</option></select></label>
+        <label>WHEELS<select id="wheelStyle"><option value="street">Street</option><option value="sport">Sport</option><option value="offroad">Off-road</option><option value="lowrider">Lowrider</option></select></label>
+        <label>BODY KIT<select id="bodyKit"><option value="clean">Clean</option><option value="race">Race Wing</option><option value="offroad">Off-road Bars</option></select></label>
+        <label>RIDE HEIGHT<input id="rideHeight" type="range" min="0" max="2" step="1" value="1" /><span class="range-labels"><i>LOW</i><i>STOCK</i><i>HIGH</i></span></label>
+      </div>
+      <button id="finishBuild" class="finish-build" type="button">FINISH BUILD <b>→</b></button>
+    </section>
+
+    <div id="toast" class="toast">CLICK + DRAG TO ORBIT CAMERA</div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
