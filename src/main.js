@@ -125,7 +125,8 @@ for (let gx = -4; gx < 4; gx++) for (let gz = -4; gz < 4; gz++) {
   if (seed % 11 === 0) { box(cx, .74, cz, 20, .05, 20, materials.grass, false); tree(cx - 5, cz - 4, false, .85); tree(cx + 5, cz + 4, false, .9); bench(cx, cz - 6); }
   else if (seed % 3) { addBuilding(cx - 5.4, cz, 8.7, 17, 12 + seed % 24, seed); addBuilding(cx + 5.4, cz, 8.7, 17, 16 + (seed * 3) % 30, seed + 2); }
   else addBuilding(cx, cz, 17, 17, 15 + seed % 31, seed);
-  if ((gx + gz) % 2 === 0) lamp(cx - 14.2, cz - 14.2, 0);
+  // The sidewalk begins 7.75m from each block center; keep the pole and lamp arm behind the curb.
+  if ((gx + gz) % 2 === 0) lamp(cx - 10.2, cz - 10.2, Math.PI / 4);
 }
 
 function house(x, z, color, rot = 0) {
@@ -174,7 +175,14 @@ const shopSign = box(40.75, 8.1, -235, .35, 2.6, 13, new THREE.MeshStandardMater
 const shopBeacon = new THREE.PointLight(0xffc433, 34, 24, 2); shopBeacon.position.set(51, 6, -235); scene.add(shopBeacon);
 const shopZone = { minX: 51, maxX: 75, minZ: -243, maxZ: -227 };
 
-for (let p = -365; p <= 365; p += 46) { lamp(-10.5, p, 0); if (Math.abs(p) > 175) lamp(10.5, p, Math.PI); }
+// Keep highway lamps beyond the road shoulder and skip every crossroad/intersection.
+const crossingRoadZ = [-330, -260, -250, -235, -152, -114, -76, -38, 0, 38, 76, 114, 152, 260, 330];
+for (let p = -365; p <= 365; p += 28) {
+  if (crossingRoadZ.every(z => Math.abs(p - z) > 13)) {
+    lamp(-12.5, p, 0);
+    lamp(12.5, p, Math.PI);
+  }
+}
 for (let p = -360; p <= 360; p += 55) { solidBox(p, 1.35, 9.7, .18, 2.7, .18, materials.dark, .12); const sign = box(p, 2.4, 9.7, 2.3, .9, .12, mat(p % 2 ? 0x396596 : 0x8f3d32), false); sign.rotation.y = Math.PI / 2; }
 
 const car = new THREE.Group();
